@@ -24,7 +24,7 @@ namespace Email_Sender_Testing_App
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"
-                     // ,"~/Content/site.css"
+                    , "~/Content/site.css"
                       ));
         }
     }

@@ -14,10 +14,16 @@ namespace Email_Sender_Testing_App
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+             name: "Editor Console",
+             url: "EDITORCONSOLE/{id}",
+             defaults: new { controller = "Home", action = "TemplateEditorConsole", id = UrlParameter.Optional }
+             );
+
+            routes.MapRoute(
+                  name: "Default",
+                  url: "{controller}/{action}/{id}",
+                  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+              );
         }
     }
 }

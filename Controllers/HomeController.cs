@@ -43,5 +43,10 @@ namespace Email_Sender_Testing_App.Controllers
             Mailer.SendMail(To, From, "Testing email template", body);
             return View("Index");
         }
+
+        public ActionResult TemplateEditorConsole()
+        {
+            return View("~/Views/Home/TemplateEditor.cshtml");
+        }
     }
 }
