@@ -76,3 +76,4 @@ D:\Aravind\07 May 2020\Email-Sender-Testing-App\obj\Debug\Email-Sender-Testing-A
 D:\Aravind\07 May 2020\Email-Sender-Testing-App\obj\Debug\Email-Sender-Testing-App.csproj.CopyComplete
 D:\Aravind\07 May 2020\Email-Sender-Testing-App\obj\Debug\Email-Sender-Testing-App.dll
 D:\Aravind\07 May 2020\Email-Sender-Testing-App\obj\Debug\Email-Sender-Testing-App.pdb
+D:\Aravind\07 May 2020\Email-Sender-Testing-App\obj\Debug\Email-Sender-Testing-App.csprojAssemblyReference.cache

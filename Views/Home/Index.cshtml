@@ -5,16 +5,21 @@
 @using (Html.BeginForm("SendMail", "Home", FormMethod.Post))
 {
     <div class=" row ">
-        <div class="panel panel-default panel-body modal-content">
-            <div class="col-lg-3 col-md-3 col-sm-3 "></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 center-block">
+        <div class="col-lg-3 col-md-3 col-sm-3"></div>
+        <div class="card col-lg-6 col-md-6 col-sm-6 shadow">
+            <div class="card-header bg-white">
+                <h2 class="h2">Send Mail</h2>
+            </div>
+            <div class="card-body">
                 <label class="label label-primary">To :</label>
                 <input type="text" name="To" class="input-group form-control input-lg" style="" placeholder="" autocomplete="on" autofocus />
                 <br />
                 <label class="label label-primary">From :</label>
                 <input type="text" name="From" class="input-group form-control input-lg" placeholder="" autocomplete="on" autofocus />
                 <br />
-                <input type="submit" value="Send" class="btn btn-info input-group" />
+            </div>
+            <div class="card-footer bg-white ">
+                <button class="btn btn-info input-group btn-lg justify-content-center" style="width:-webkit-fill-available;" type="submit"><i class="glyphicon glyphicon-send"></i>&nbsp;&nbsp; Send</button>
             </div>
         </div>
     </div>
