@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Email_Sender_Testing_App.SendMail;
+using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,18 +16,32 @@ namespace Email_Sender_Testing_App.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public PartialViewResult EmailTemplate()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView("~/Views/Home/EmailTemplate.cshtml");
         }
 
-        public ActionResult Contact()
+        protected string ConvertPartialViewToString(PartialViewResult partialView)
         {
-            ViewBag.Message = "Your contact page.";
+            using (var sw = new StringWriter())
+            {
+                partialView.View = ViewEngines.Engines.FindPartialView(ControllerContext, partialView.ViewName).View;
 
-            return View();
+                var vc = new ViewContext(ControllerContext, partialView.View, partialView.ViewData, partialView.TempData, sw);
+                partialView.View.Render(vc, sw);
+
+                var partialViewString = sw.GetStringBuilder().ToString();
+
+                return partialViewString;
+            }
+        }
+
+        public ActionResult SendMail(string To, string From)
+        {
+            string body = ConvertPartialViewToString(EmailTemplate());
+            Emailer Mailer = new Emailer();
+            Mailer.SendMail(To, From, "Testing email template", body);
+            return View("Index");
         }
     }
 }
