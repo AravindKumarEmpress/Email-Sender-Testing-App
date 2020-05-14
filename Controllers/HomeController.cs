@@ -1,10 +1,10 @@
-﻿using Email_Sender_Testing_App.SendMail;
+using Email_Sender_Testing_App.SendMail;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
+using Email_Sender_Testing_App.Common_Functions;
 using System.Web.Mvc;
 
 namespace Email_Sender_Testing_App.Controllers
@@ -21,30 +21,23 @@ namespace Email_Sender_Testing_App.Controllers
             return PartialView("~/Views/Home/EmailTemplate.cshtml");
         }
 
-        protected string ConvertPartialViewToString(PartialViewResult partialView)
-        {
-            using (var sw = new StringWriter())
-            {
-                partialView.View = ViewEngines.Engines.FindPartialView(ControllerContext, partialView.ViewName).View;
-
-                var vc = new ViewContext(ControllerContext, partialView.View, partialView.ViewData, partialView.TempData, sw);
-                partialView.View.Render(vc, sw);
-
-                var partialViewString = sw.GetStringBuilder().ToString();
-
-                return partialViewString;
-            }
-        }
-
         public ActionResult SendMail(string To, string From)
         {
-            string body = ConvertPartialViewToString(EmailTemplate());
-            Emailer Mailer = new Emailer();
-            Mailer.SendMail(To, From, "Testing email template", body);
+            string body = CommonFunction.Convert_Partial_View_To_String(EmailTemplate(), this.ControllerContext);
+            CommonFunction.Send_Mail(To, From, body);
             return View("Index");
         }
 
-        public ActionResult TemplateEditorConsole()
+        public ActionResult CreateFile(string FileName)
+        {
+            string FolderPath = Server.MapPath("~/Templates/");
+            string BuildPath = Server.MapPath("~/Email-Sender-Testing-App.csproj");
+            CommonFunction.Html_File_Template(FileName, FolderPath);
+
+            return Redirect("/EDITORCONSOLE/"+ FileName);
+        }
+
+        public ActionResult TemplateEditorConsole(string FileName)
         {
             return View("~/Views/Home/TemplateEditor.cshtml");
         }

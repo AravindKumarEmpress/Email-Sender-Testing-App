@@ -15,8 +15,8 @@ namespace Email_Sender_Testing_App
 
             routes.MapRoute(
              name: "Editor Console",
-             url: "EDITORCONSOLE/{id}",
-             defaults: new { controller = "Home", action = "TemplateEditorConsole", id = UrlParameter.Optional }
+             url: "EDITORCONSOLE/{FileName}",
+             defaults: new { controller = "Home", action = "TemplateEditorConsole", FileName = UrlParameter.Optional }
              );
 
             routes.MapRoute(

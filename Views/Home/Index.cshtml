@@ -15,19 +15,46 @@
                 <input type="text" name="To" class="input-group form-control input-lg" style="" placeholder="" autocomplete="on" autofocus />
                 <br />
                 <label class="label label-primary">From :</label>
-                <input type="text" name="From" class="input-group form-control input-lg" placeholder="" autocomplete="on" autofocus />
+                <input type="text" name="From" class="input-group form-control input-lg" value="empressemailtemplatetesting@gmail.com" placeholder="empressemailtemplatetesting@gmail.com" autocomplete="on" disabled />
                 <br />
             </div>
             <div class="card-footer bg-white ">
                 @*@Html.ActionLink("Template Editor", "TemplateEditor", null,new { @class= "btn btn-info input-group btn-lg justify-content-center col-lg-3 col-md-3 col-sm-3" })*@
-                <a href="/EditorConsole">
-                    <button class="btn btn-info btn-lg justify-content-center float-left" type="button">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        &nbsp;&nbsp; Editor
-                    </button>
-                </a>
+
+                <button class="btn btn-info btn-lg justify-content-center float-left" type="button" data-toggle="modal" data-target="#exampleModal">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    &nbsp;&nbsp; Editor
+                </button>
+
                 <button class="btn btn-info btn-lg justify-content-center float-right " type="submit"><i class="glyphicon glyphicon-send"></i>&nbsp;&nbsp; Send</button>
             </div>
         </div>
     </div>
 }
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("CreateFile", "Home", new AjaxOptions { HttpMethod = "POST", OnBegin = "", OnComplete = "", OnFailure = "", OnSuccess = "" }))
+            {
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="label label-primary">File Name :</label>
+                    <input type="text" name="FileName" class="input-group form-control input-lg" style="" placeholder="" autocomplete="on" autofocus />
+                    <br />
+                    <i class="small text-muted">* the file will be in HTML format</i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

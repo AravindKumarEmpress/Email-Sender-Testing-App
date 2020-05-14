@@ -1,17 +1,23 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "TemplateEditor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <nav class="navbar navbar-expand-sm bg-light is-filled">
+        <a class="btn btn-default float-left"><i class="glyphicon glyphicon-align-right"></i></a>
+        <a class="btn btn-default float-right"><i class="glyphicon glyphicon-folder-close"></i></a>
+        
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>TemplateEditor</title>
-   
-</head>
-<body>
-  
-</body>
-</html>
+    </nav>
+    <div class="row container-fluid" style="margin: 0px !important; padding: 0px !important;">
+        <div class="col-6">
+          
+            @*<textarea id="editor" class="form-control" style="height: 90vh; overflow:auto" draggable="false">
+            </textarea>*@
+        </div>
+        <div class="col-6">
+            <div class="embed-responsive embed-responsive-16by9" style="height: 90vh;">
+                <iframe class="embed-responsive-item" src="~/Templates/testing.html" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
