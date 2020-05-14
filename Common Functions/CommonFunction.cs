@@ -42,7 +42,7 @@ namespace Email_Sender_Testing_App.Common_Functions
             string subject = "Email template Testing";
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFromAddress,"Email template Testing");
+                mail.From = new MailAddress(emailFromAddress, "Email template Testing");
                 mail.To.Add(emailToAddress);
                 mail.Subject = subject;
                 mail.Body = body;
@@ -56,12 +56,19 @@ namespace Email_Sender_Testing_App.Common_Functions
                 }
             }
         }
-        public void Html_File_Template(string Filename)
+        public static void Html_File_Template(string Filename, string FolderPath)
         {
-            string defaultString = "<!DOCTYPE html><html><head><title>TemplateEditor</title></head><body><div></div></body></html>";
-            // string pathToFiles = 
-
-            File.WriteAllText(@"E:\Files\DataGridView.htm", defaultString);
+            string defaultString = "<!DOCTYPE html>";
+            defaultString += "<html>";
+            defaultString += "<head>";
+            defaultString += "    <title>"+Filename[0].ToString().ToUpper()+Filename.Substring(1)+"</title>";
+            defaultString += "</head>";
+            defaultString += "<body>";
+            defaultString += "    <div></div>";
+            defaultString += "</body>";
+            defaultString += "</html>";
+            string pathToFiles = FolderPath + Filename + ".html";
+            File.WriteAllText(pathToFiles, defaultString);
         }
     }
 }
