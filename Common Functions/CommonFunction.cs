@@ -33,27 +33,35 @@ namespace Email_Sender_Testing_App.Common_Functions
 
         public static void Send_Mail(string To, string From, string body)
         {
-            string smtpAddress = "smtp.gmail.com";
-            int portNumber = 587;
-            bool enableSSL = true;
-            string emailFromAddress = "empressemailtemplatetesting@gmail.com";
-            string password = "empress123";
-            string emailToAddress = To;
-            string subject = "Email template Testing";
-            using (MailMessage mail = new MailMessage())
+            try
             {
-                mail.From = new MailAddress(emailFromAddress, "Email template Testing");
-                mail.To.Add(emailToAddress);
-                mail.Subject = subject;
-                mail.Body = body;
-                mail.IsBodyHtml = true;
-                //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
-                using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                string smtpAddress = "smtp.gmail.com";
+                int portNumber = 587;
+                bool enableSSL = true;
+                string emailFromAddress = "empressemailtemplatetesting@gmail.com";
+                string password = "Empress@123#";
+                string emailToAddress = To;
+                string subject = "Email template Testing";
+                using (MailMessage mail = new MailMessage())
                 {
-                    smtp.Credentials = new NetworkCredential(emailFromAddress, password);
-                    smtp.EnableSsl = enableSSL;
-                    smtp.Send(mail);
+                    mail.From = new MailAddress(emailFromAddress, "Email template Testing");
+                    mail.To.Add(emailToAddress);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+                    //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
+                    using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(emailFromAddress, password);
+                        smtp.EnableSsl = enableSSL;
+                        smtp.Send(mail);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         public static void Html_File_Template(string Filename, string FolderPath)
@@ -61,7 +69,7 @@ namespace Email_Sender_Testing_App.Common_Functions
             string defaultString = "<!DOCTYPE html>";
             defaultString += "<html>";
             defaultString += "<head>";
-            defaultString += "    <title>"+Filename[0].ToString().ToUpper()+Filename.Substring(1)+"</title>";
+            defaultString += "    <title>" + Filename[0].ToString().ToUpper() + Filename.Substring(1) + "</title>";
             defaultString += "</head>";
             defaultString += "<body>";
             defaultString += "    <div></div>";
